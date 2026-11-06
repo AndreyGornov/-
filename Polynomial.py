@@ -20,12 +20,7 @@ class Polynomial():
 
         return f'Polynomial {self.coef}'
 
-        # for el in range(len(f), 0, -1):
-        #     if f[el - 1] == 0:
-        #         f = f[:-1]
-        #     else:
-        #         break
-        # return f'Polynomial {f}'
+        
 
 
 
