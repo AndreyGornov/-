@@ -31,25 +31,25 @@ class Polynomial():
             return "0"
         parts = []
         for deg in range(len(self.coef) - 1, -1, -1):
-            val = self.coef[deg]
+            val = self.coef[deg]         #Пропуск нулевого коефицента
             if val == 0:
                 continue
-            sign = "+ " if val > 0 else "- "
+            sign = "+ " if val > 0 else "- "  # Определение знака перед коефицентом
             abs_val = abs(val)
-            coef_str = "" if (abs_val == 1 and deg != 0) else str(abs_val)
+            coef_str = "" if (abs_val == 1 and deg != 0) else str(abs_val) # Учет 1x для всех коефицентов кроме свободного
 
-            if deg == 0:
+            if deg == 0: #для свободного члена
                 x_str = str(abs_val)
                 coef_str = ""
-            elif deg == 1:
+            elif deg == 1:# для x^1
                 x_str = "x"
             else:
                 x_str = f"x^{deg}"
-            parts.append(f"{sign}{coef_str}{x_str}")
+            parts.append(f"{sign}{coef_str}{x_str}") #добавление по 1 члену многочлена в список
         if not parts:
             return "0"
         result = " ".join(parts)
-        if result.startswith("+ "):
+        if result.startswith("+ "): # Переделывание некрасивого начала
             result = result[2:]
         elif result.startswith("- "):
             result = "-" + result[2:]
@@ -58,15 +58,15 @@ class Polynomial():
     def degree(self):# Возвращает степень многочлена
         return len(self.coef) - 1
 
-    def __eq__(self, other):
+    def __eq__(self, other):# Равенство многочленов
         if isinstance(other, int):
             other = Polynomial(other)
-        if not isinstance(other, Polynomial): return False
+        if not isinstance(other, Polynomial): return False # Проверка на коректный ввод
         if self.coef == other.coef:
             return True
         else: return False
 
-    def __add__(self, other):
+    def __add__(self, other):# сложение
         if isinstance(other, (int, float)):
             other = Polynomial(other)
 
@@ -87,11 +87,11 @@ class Polynomial():
 
     def __neg__(self):
 
-        return Polynomial(*[-x for x in self.coef])
+        return Polynomial(*[-x for x in self.coef]) #* превращает вывод в красивый(аргументы списка выводятся так(..,..,..))
 
 
 
-    def __sub__(self, other):
+    def __sub__(self, other):#вычитание
         if isinstance(other, int):
             other = Polynomial(other)
 
@@ -122,7 +122,7 @@ class Polynomial():
             d -= 1
         return Polynomial(res)
 
-    def __mul__(self, other):
+    def __mul__(self, other): #Умножение(работает как раскрытие скобок, каждый член на каждый и их сумма)
         if isinstance(other, int):
             other = Polynomial(other)
         if not isinstance(other, Polynomial):
@@ -158,7 +158,8 @@ class Polynomial():
 
             return (degree, coeff)
         else:
-            raise StopIteration
+            raise StopIteration #Специальная команда которая завершает итерацию внутри метода __next
+
 
 
 
