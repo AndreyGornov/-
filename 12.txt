@@ -1,1 +1,5 @@
-1010
+	1 otsup
+	1 otstup
+		2 otstupa
+			3 otstupa
+	1 otstup
